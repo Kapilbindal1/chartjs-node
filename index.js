@@ -140,13 +140,12 @@ class ChartjsNode extends EventEmitter {
      */
     getImageBuffer(imageType) {
         return new BbPromise((resolve, reject) => {
-            this._canvas.toBlob((blob, err) => {
-                if (err) {
-                    return reject(err);
-                }
-                var buffer = jsdom.blobToBuffer(blob);
-                return resolve(buffer);
-            }, imageType);
+          this._canvas.toBuffer((err, result) => {
+            if (err) {
+              return reject(err);
+          }
+          return resolve(result);
+          }, imageType);
         });
     }
      /**
