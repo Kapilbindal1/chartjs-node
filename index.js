@@ -100,9 +100,10 @@ class ChartjsNode extends EventEmitter {
                         }
                     });
                 }
-
+                
+                Chartjs.defaults.global.defaultFontColor = "#000000";
                 this._disableDynamicChartjsSettings(configuration);
-                this._canvas = window.document.getElementById('myChart');
+                this._canvas = createCanvas(this.width, this.height);
                 this._ctx = this._canvas.getContext('2d');
 
                 this._chart = new Chartjs(this._ctx, configuration);
